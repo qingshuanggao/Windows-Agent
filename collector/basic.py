@@ -14,7 +14,6 @@ from utils import g
 def collect():
     logging.debug('enter basic collect')
     push_interval = 60
-    zh_decode = "gbk"
 
     time_now = int(time.time())
     payload = []
@@ -111,7 +110,7 @@ def collect():
 
         data["metric"] = "net.if.in.mbits"
         data["value"] = net_io_status[key].bytes_recv * 8 / 100000
-        data["tags"] = "interface=" + key.decode(zh_decode)
+        data["tags"] = "interface=" + key
         payload.append(copy.copy(data))
 
         data["metric"] = "net.if.out.mbits"
@@ -143,7 +142,7 @@ def collect():
         payload.append(copy.copy(data))
         logging.debug(payload)
 
-        payload = filter(lambda x: x['metric'] not in g.IGNORE, payload)
+        payload = list(filter(lambda x: x['metric'] not in g.IGNORE, payload))
 
     try:
         result = send_data_to_transfer(payload)
@@ -159,7 +158,7 @@ def is_interface_ignore(key):
     """
 
     for ignore_key in g.COLLECTOR['ifacePrefixIgnore']:
-        if ignore_key in key.decode('gbk'):
+        if ignore_key in key:
             return True
 
 def basic_collect(period):

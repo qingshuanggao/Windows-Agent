@@ -22,7 +22,7 @@ class APIThread(threading.Thread):
         self.counter = counter
 
     def run(self):
-        print "Starting " + self.name
+        print ("Starting " + self.name)
         # Get lock to synchronize threads
         #print_time(self.name, self.counter, 3)
         # Free lock to release next thread

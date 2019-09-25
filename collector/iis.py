@@ -4,7 +4,7 @@ import time
 import logging
 
 import winstats
-from helpers import get_service_alive_info
+from collector.helpers import get_service_alive_info
 from utils import g
 from rpc.transfer import send_data_to_transfer
 

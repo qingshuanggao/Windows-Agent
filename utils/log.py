@@ -1,7 +1,7 @@
 import logging
 import os
 import inspect
-import g
+from . import g
 
 
 def get_logger(logger_name='[PythonService]', dirpath=None):

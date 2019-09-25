@@ -3,7 +3,7 @@ import socket
 import itertools
 import logging
 
-from client import JSONClient
+from rpc.client import JSONClient
 from utils import g
 
 transfer_rpc_clients = {}
